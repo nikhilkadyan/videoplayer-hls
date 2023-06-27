@@ -1,5 +1,4 @@
 import Hls from 'hls.js'
-import { defaultHLSConfig } from './constants'
 
 export const loadVideo = (
     videoInfo: Video,
@@ -10,7 +9,6 @@ export const loadVideo = (
     const isVideoHls = videoInfo.source.includes('.m3u8')
     if (isSupported && isVideoHls) {
         const hls = new Hls({
-            ...defaultHLSConfig,
             startPosition: videoInfo.start,
         })
         hls.loadSource(videoInfo.source)
@@ -57,5 +55,5 @@ export const calculateCurrentTimeForVideo = (
 }
 
 export const shouldPrebuffer = (currentTime: number, endTime: number): boolean => {
-    return currentTime > endTime - 3
+    return currentTime > endTime - 5
 }
